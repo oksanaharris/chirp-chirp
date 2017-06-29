@@ -1,3 +1,4 @@
+
 var sample_text = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod \
 tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, \
 quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo \
@@ -13,13 +14,28 @@ var counter = {
   "q" : 0,  "r" : 0,  "s" : 0,  "t" : 0,
   "u" : 0,  "v" : 0,  "w" : 0,  "x" : 0,
   "y" : 0,  "z" : 0
-}
+};
+
+var i = 0;
 
 function countLetters(counter, sample_text){
-  // FIX ME
+
+  if (i >= sample_text.length ){
+    return;
+  } 
+  
+  var lowerCase = sample_text.charAt(i).toLowerCase();
+  if (counter.hasOwnProperty(lowerCase)){
+      counter[lowerCase]++;
+  }
+
+  i++;
+  countLetters(counter, sample_text);
+  return;
 }
 
 $(document).ready(function(){
+  // i = 0;
   countLetters(counter, sample_text);
   $("#result").html(JSON.stringify(counter));
 });
