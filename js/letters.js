@@ -16,26 +16,21 @@ var counter = {
   "y" : 0,  "z" : 0
 };
 
-var i = 0;
-
 function countLetters(counter, sample_text){
 
-  if (i >= sample_text.length ){
-    return;
+  if (sample_text.length === 0){
+    return counter;
   } 
   
-  var lowerCase = sample_text.charAt(i).toLowerCase();
+  var lowerCase = sample_text.charAt(0).toLowerCase();
   if (counter.hasOwnProperty(lowerCase)){
       counter[lowerCase]++;
   }
 
-  i++;
-  countLetters(counter, sample_text);
-  return;
+  return countLetters(counter, sample_text.slice(1));
 }
 
 $(document).ready(function(){
-  // i = 0;
   countLetters(counter, sample_text);
   $("#result").html(JSON.stringify(counter));
 });
